@@ -43,9 +43,17 @@ const createNewUsuari = (async (usuari) => {
 
 const deleteOneUsuari = (async (idEsidUsuaritoc) => {
   try {
-    const deletedUsuari = await db.getOneUsuari(idUsuari);
-    await db.deleteOneUsuari(idUsuari);
-    return deletedUsuari;
+    const usuariTasks = await db.getUsuariTasques(idUsuari);
+    if (usuariTasks.length > 0) {
+      throw {
+        status: 400,
+        message: 'Usuari amb tasques'
+      };
+    } else {
+      const deletedUsuari = await db.getOneUsuari(idUsuari);
+      await db.deleteOneUsuari(idUsuari);
+      return deletedUsuari;
+    }
   } catch (error) {
     throw {
       status: 500,

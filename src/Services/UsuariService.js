@@ -1,8 +1,15 @@
 const db = require('../Database/Utils/Usuari');
 
 const getAllUsuaris = (async () => {
-  const usuaris = await db.getAllUsuaris();
-  return usuaris;
+  try {
+    const usuaris = await db.getAllUsuaris();
+    return usuaris;
+  } catch (error) {
+    throw {
+      status: 500,
+      message: error?.message || error
+    };
+  }
 });
 
 /* const getOneEstoc = (async (id) => {
@@ -40,7 +47,22 @@ const deleteOneUsuari = (async (idEsidUsuaritoc) => {
     await db.deleteOneUsuari(idUsuari);
     return deletedUsuari;
   } catch (error) {
-    throw error;
+    throw {
+      status: 500,
+      message: error?.message || error
+    };
+  }
+});
+
+const getUsuariTasques = (async (idUsuari) => {
+  try {
+    const tasques = await db.getUsuariTasques(idUsuari);
+    return tasques;
+  } catch (error) {
+    throw {
+      status: 500,
+      message: error?.message || error
+    };
   }
 });
 
@@ -50,4 +72,5 @@ module.exports = {
   createNewUsuari,
   // updateOneEstoc,
   deleteOneUsuari,
+  getUsuariTasques,
 };

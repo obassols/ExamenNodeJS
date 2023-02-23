@@ -71,10 +71,25 @@ const deleteOneUser = (id) => {
   });
 };
 
+const getUsuariTasques = (id) => {
+  return new Promise((resolve, reject) => {
+    const query = 'SELECT * FROM Tasks WHERE user = ?';
+    const values = [id];
+    db.all(query, values, (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+};
+
 module.exports = {
   getAllUsuaris,
   getOneUsuari,
   createNewUsuari,
   // updateOneEstoc,
   deleteOneUser,
+  getUsuariTasques,
 };

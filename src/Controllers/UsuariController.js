@@ -128,10 +128,46 @@ const deleteOneUsuari = (async (req, res) => {
   }
 });
 
+const getUsuariTasques = (async (req, res) => {
+  const {
+    params: { idUsuari },
+  } = req;
+
+  if (!idUsuari) {
+    res
+      .status(400)
+      .send({
+        status: "FAILED",
+        data: { error: "Falta el parametre 'idUsuari'" },
+      });
+    return;
+  }
+
+  try {
+    let tasques = await usuariService.getUsuariTasques(idUsuari);
+
+    if (req.query.estat) {
+      tasques = tasques.filter(tasca => tasca.status === req.query.estat);
+    }
+
+    if (req.query.data) {
+      tasques = tasques.filter(tasca => tasca.createdAt > req.query.data);
+    }
+
+    res.status(200).send({ status: "OK", data: tasques });
+
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+});
+
 module.exports = {
   getAllUsuaris,
   // getOneEstoc,
   createNewUsuari,
   // updateOneEstoc,
   deleteOneUsuari,
+  getUsuariTasques,
 };

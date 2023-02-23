@@ -13,4 +13,6 @@ router.post("/", usuariController.createNewUsuari);
 
 router.delete("/:idUsuari", usuariController.deleteOneUsuari);
 
+router.get("/:idUsuari/tasques", usuariController.getUsuariTasques);
+
 module.exports = router;

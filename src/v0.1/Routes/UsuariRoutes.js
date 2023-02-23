@@ -5,11 +5,7 @@ const usuariController = require("../../Controllers/UsuariController");
 
 router.get("/", usuariController.getAllUsuaris);
 
-// router.get("/:idEstoc", usuariController.getOneEstoc);
-
 router.post("/", usuariController.createNewUsuari);
-
-// router.patch("/:idEstoc", usuariController.updateOneEstoc);
 
 router.delete("/:idUsuari", usuariController.deleteOneUsuari);
 

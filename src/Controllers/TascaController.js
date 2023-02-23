@@ -18,6 +18,10 @@ const getOneTasca = (async (req, res) => {
 
   try {
     const tasca = await tascaService.getOneTasca(idTasca);
+    if (!tasca) {
+      res.status(404).send({ status: "FAILED", data: { error: "Tasca no trobada" } });
+      return;
+    }
     res.status(200).send({ status: "OK", data: tasca });
   } catch (error) {
     res
@@ -53,6 +57,7 @@ const createNewTasca = (async (req, res) => {
     title: body.title,
     description: body.description,
     status: body.status,
+    createdAt: new Date().toLocaleDateString("en-US", { timeZone: "UTC" }),
   };
 
   try {

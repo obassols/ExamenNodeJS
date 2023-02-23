@@ -12,12 +12,6 @@ const getAllUsuaris = (async () => {
   }
 });
 
-/* const getOneEstoc = (async (id) => {
-  const estoc = await db.getOneEstoc(id);
-  return estoc;
-});
- */
-
 const createNewUsuari = (async (usuari) => {
   try {
     await db.createNewUsuari(usuari.id, usuari.username, usuari.fullName, usuari.createdAt);
@@ -31,17 +25,7 @@ const createNewUsuari = (async (usuari) => {
   }
 });
 
-/* const updateOneEstoc = (async (idEstoc, canvis) => {
-  try {
-    const updatedAt = new Date().toLocaleDateString("en-US", { timeZone: "UTC" });
-    const updatedEstoc = await db.updateOneEstoc(idEstoc, canvis.producte, canvis.caducitat, canvis.datavenda, canvis.ubicacio, updatedAt);
-    return updatedEstoc;
-  } catch (error) {
-    throw error;
-  }
-}); */
-
-const deleteOneUsuari = (async (idEsidUsuaritoc) => {
+const deleteOneUsuari = (async (idUsuari) => {
   try {
     const usuariTasks = await db.getUsuariTasques(idUsuari);
     if (usuariTasks.length > 0) {
@@ -76,9 +60,7 @@ const getUsuariTasques = (async (idUsuari) => {
 
 module.exports = {
   getAllUsuaris,
-  // getOneEstoc,
   createNewUsuari,
-  // updateOneEstoc,
   deleteOneUsuari,
   getUsuariTasques,
 };

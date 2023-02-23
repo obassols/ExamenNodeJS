@@ -3,8 +3,6 @@ const router = express.Router();
 
 const tascaController = require("../../Controllers/TascaController");
 
-// router.get("/", usuariController.getAllUsuaris);
-
 router.get("/:idTasca", tascaController.getOneTasca);
 
 router.post("/", tascaController.createNewTasca);

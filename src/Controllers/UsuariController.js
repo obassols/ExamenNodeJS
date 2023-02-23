@@ -12,31 +12,6 @@ const getAllUsuaris = (async (req, res) => {
   }
 });
 
-/* const getOneEstoc = (async (req, res) => {
-  const {
-    params: { idEstoc },
-  } = req;
-
-  if (!idEstoc) {
-    res
-      .status(400)
-      .send({
-        status: "FAILED",
-        data: { error: "Falta el parametre 'idEstoc'" },
-      });
-    return;
-  }
-
-  try {
-    const estoc = await estocService.getOneEstoc(idEstoc);
-    res.status(200).send({ status: "OK", data: estoc });
-  } catch (error) {
-    res
-      .status(error?.status || 500)
-      .send({ status: "FAILED", data: { error: error?.message || error } });
-  }
-}); */
-
 const createNewUsuari = (async (req, res) => {
   const { body } = req;
 
@@ -71,42 +46,12 @@ const createNewUsuari = (async (req, res) => {
   }
 });
 
-/* const updateOneEstoc = (async (req, res) => {
-  const {
-    body,
-    params: { idEstoc },
-  } = req;
-
-  if (!idEstoc) {
-    res
-      .status(400)
-      .send({
-        status: "FAILED",
-        data: { error: "Falta el parametre 'idEstoc'" },
-      });
-  }
-
-  try {
-    const canvis = {
-      producte: body.producte ? body.producte : null,
-      caducitat: body.caducitat ? body.caducitat : null,
-      dataVenda: body.dataVenda ? body.dataVenda : null,
-      ubicacio: body.ubicacio ? body.ubicacio : null
-    };
-    await estocService.updateOneEstoc(idEstoc, canvis);
-    const updatedEstoc = await estocService.getOneEstoc(idEstoc);
-    res.status(200).send({ status: "OK", data: updatedEstoc });
-  } catch (error) {
-    res
-      .status(error.status || 500)
-      .send({ status: "FAILED", data: { error: error?.message || error } });
-  }
-}); */
-
 const deleteOneUsuari = (async (req, res) => {
   const {
     params: { idUsuari },
   } = req;
+
+  console.log(idUsuari);
 
   if (!idUsuari) {
     res
@@ -119,7 +64,7 @@ const deleteOneUsuari = (async (req, res) => {
   }
 
   try {
-    const deletedUsuari = await producteService.deleteOneUsuari(idUsuari);
+    const deletedUsuari = await usuariService.deleteOneUsuari(idUsuari);
     res.status(200).send({ status: "OK", data: deletedUsuari });
   } catch (error) {
     res
@@ -165,9 +110,7 @@ const getUsuariTasques = (async (req, res) => {
 
 module.exports = {
   getAllUsuaris,
-  // getOneEstoc,
   createNewUsuari,
-  // updateOneEstoc,
   deleteOneUsuari,
   getUsuariTasques,
 };

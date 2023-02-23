@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "f7ce7ccc-d930-482b-9e67-a15c38a9f72c",
+		"name": "ExamenNodeJS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18626605"
+	},
+	"item": [
+		{
+			"name": "Usuaris",
+			"item": [
+				{
+					"name": "Obtenir tots els usuaris",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v0.1/usuaris",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v0.1",
+								"usuaris"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un nou usuari",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"testUser\",\r\n    \"fullName\": \"Usuari de Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v0.1/usuaris",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v0.1",
+								"usuaris"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtenir totes les tasques d'un usuari",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v0.1/usuaris/33ce2380-0eb6-476b-a392-8ba76b5945c2/tasques?estat=DONE&data=2/10/2023",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v0.1",
+								"usuaris",
+								"33ce2380-0eb6-476b-a392-8ba76b5945c2",
+								"tasques"
+							],
+							"query": [
+								{
+									"key": "estat",
+									"value": "DONE"
+								},
+								{
+									"key": "data",
+									"value": "2/10/2023"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un usuari si no te tasques asociades",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v0.1/usuaris/7825a1df-1a31-45a8-90dd-9f5ba73227ac",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v0.1",
+								"usuaris",
+								"7825a1df-1a31-45a8-90dd-9f5ba73227ac"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasques",
+			"item": [
+				{
+					"name": "Obtenir info de una tasca",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v0.1/tasques/8f5b9e12-957c-4fe3-911f-86f04f36d20c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v0.1",
+								"tasques",
+								"8f5b9e12-957c-4fe3-911f-86f04f36d20c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear una nova tasca",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"33ce2380-0eb6-476b-a392-8ba76b5945c2\",\r\n    \"title\": \"Tasca5\",\r\n    \"description\": \"Tasca 5 per comprovar que es generen amb createdAt\",\r\n    \"status\": \"TODO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v0.1/tasques/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v0.1",
+								"tasques",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar una tasca",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"33ce2380-0eb6-476b-a392-8ba76b5945c2\",\r\n    \"title\": \"Tasca Modificada 2\",\r\n    \"description\": \"Tasca modificada 2 cops per intentar aprovar l'examen\",\r\n    \"status\": \"DONE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v0.1/tasques/870ba1e6-d27e-45f4-b62e-eb79c76c60de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v0.1",
+								"tasques",
+								"870ba1e6-d27e-45f4-b62e-eb79c76c60de"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar una tasca",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v0.1/tasques/8f5b9e12-957c-4fe3-911f-86f04f36d20c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v0.1",
+								"tasques",
+								"8f5b9e12-957c-4fe3-911f-86f04f36d20c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
